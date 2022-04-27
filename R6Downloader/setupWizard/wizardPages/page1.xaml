@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="R6Downloader.setupWizard.wizardPages.page1"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:R6Downloader.setupWizard.wizardPages"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300"
+             Background="Transparent"
+             >
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <TextBlock Text="Welcome" Foreground="White" HorizontalAlignment="Center" FontSize="20"/>
+            <TextBlock Text="looks like this is the first" Foreground="White" HorizontalAlignment="Center" FontSize="16"/>
+            <TextBlock Text="time you're using the R6Downloader" Foreground="White" HorizontalAlignment="Center" FontSize="16"/>
+            <TextBlock Text="its recommended to not skip this" Foreground="White" HorizontalAlignment="Center" FontSize="16" Margin="0,10,0,0"/>
+            <TextBlock Text="if you're a first-time user" Foreground="White" HorizontalAlignment="Center" FontSize="16"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

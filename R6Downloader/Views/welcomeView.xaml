@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="R6Downloader.welcomeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:R6Downloader"
+             mc:Ignorable="d"
+             d:DesignHeight="410" d:DesignWidth="590">
+    <Border CornerRadius="10">
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0 0" EndPoint="1 1">
+                <LinearGradientBrush.GradientStops>
+                    <GradientStop Offset="0" Color="#1d1b29" />
+                    <GradientStop Offset="1" Color="#171621" />
+                </LinearGradientBrush.GradientStops>
+            </LinearGradientBrush>
+        </Border.Background>
+        <StackPanel Orientation="Vertical">
+            <Image Source="https://cdn.discordapp.com/attachments/804937376211533844/954827979027017748/health.png"
+                   Height="300"/>
+            <TextBlock Text="R6Downloader" Foreground="White"
+                       FontSize="40"
+                       HorizontalAlignment="Center"/>
+            <TextBlock Text="by WeeXnes" Foreground="White"
+                       FontSize="20"
+                       HorizontalAlignment="Center"/>
+        </StackPanel>
+    </Border>
+</UserControl>
