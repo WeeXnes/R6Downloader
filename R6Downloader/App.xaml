@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:R6Downloader"
              StartupUri="MainWindow.xaml">
+    
     <Application.Resources>
-         
+        <ResourceDictionary Source="Theme/materialButtonTheme.xaml"/>
     </Application.Resources>
 </Application>

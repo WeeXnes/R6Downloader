@@ -81,9 +81,7 @@ namespace R6Downloader
             CMD.execute(new []
             {
                 "title Downloading " + this.Name,
-                "&&",
                 "dotnet DepotDownloader.dll -app 359550 -depot 377237 -manifest " + res.binary + " -username " + globals.steamUsername + " -remember-password -dir \"" + path + "\" -validate -max-servers 15 -max-downloads 10",
-                "&&",
                 "dotnet DepotDownloader.dll -app 359550 -depot 359551 -manifest " + res.content + " -username " + globals.steamUsername + " -remember-password -dir \"" + path + "\" -validate -max-servers 15 -max-downloads 10"
             });
         }

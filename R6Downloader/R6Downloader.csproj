@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props"
-            Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"/>
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
     <PropertyGroup>
         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
         <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -14,6 +13,7 @@
         <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
         <WarningLevel>4</WarningLevel>
         <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+        <ApplicationIcon>health.ico</ApplicationIcon>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
         <PlatformTarget>AnyCPU</PlatformTarget>
@@ -35,22 +35,44 @@
         <WarningLevel>4</WarningLevel>
     </PropertyGroup>
     <ItemGroup>
-        <Reference Include="System"/>
-        <Reference Include="System.Core"/>
-        <Reference Include="System.Data"/>
-        <Reference Include="System.Xml"/>
+        <Reference Include="DiscordRPC, Version=1.0.175.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>..\packages\DiscordRichPresence.1.0.175\lib\net35\DiscordRPC.dll</HintPath>
+        </Reference>
+        <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+          <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+        </Reference>
+        <Reference Include="System" />
+        <Reference Include="System.Core" />
+        <Reference Include="System.Data" />
+        <Reference Include="System.IO.Compression.FileSystem" />
+        <Reference Include="System.Windows.Forms" />
+        <Reference Include="System.Xml" />
         <Reference Include="System.Xaml">
             <RequiredTargetFramework>4.0</RequiredTargetFramework>
         </Reference>
-        <Reference Include="WindowsBase"/>
-        <Reference Include="PresentationCore"/>
-        <Reference Include="PresentationFramework"/>
+        <Reference Include="WindowsBase" />
+        <Reference Include="PresentationCore" />
+        <Reference Include="PresentationFramework" />
     </ItemGroup>
     <ItemGroup>
         <ApplicationDefinition Include="App.xaml">
             <Generator>MSBuild:Compile</Generator>
             <SubType>Designer</SubType>
         </ApplicationDefinition>
+        <Compile Include="Classes\apiResponse.cs" />
+        <Compile Include="Classes\cmdInterface.cs" />
+        <Compile Include="Classes\globals.cs" />
+        <Compile Include="Classes\INIFile.cs" />
+        <Compile Include="Classes\version.cs" />
+        <Compile Include="setupWizard\setupWizard.xaml.cs" />
+        <Compile Include="setupWizard\wizardPages\final.xaml.cs" />
+        <Compile Include="setupWizard\wizardPages\page1.xaml.cs" />
+        <Compile Include="setupWizard\wizardPages\page2.xaml.cs" />
+        <Compile Include="setupWizard\wizardPages\page3.xaml.cs" />
+        <Compile Include="setupWizard\wizardPages\page4.xaml.cs" />
+        <Compile Include="Views\contentView.xaml.cs" />
+        <Compile Include="Views\settingsWindow.xaml.cs" />
+        <Compile Include="Views\welcomeView.xaml.cs" />
         <Page Include="MainWindow.xaml">
             <Generator>MSBuild:Compile</Generator>
             <SubType>Designer</SubType>
@@ -63,6 +85,16 @@
             <DependentUpon>MainWindow.xaml</DependentUpon>
             <SubType>Code</SubType>
         </Compile>
+        <Page Include="setupWizard\setupWizard.xaml" />
+        <Page Include="setupWizard\wizardPages\final.xaml" />
+        <Page Include="setupWizard\wizardPages\page1.xaml" />
+        <Page Include="setupWizard\wizardPages\page2.xaml" />
+        <Page Include="setupWizard\wizardPages\page3.xaml" />
+        <Page Include="setupWizard\wizardPages\page4.xaml" />
+        <Page Include="Theme\materialButtonTheme.xaml" />
+        <Page Include="Views\contentView.xaml" />
+        <Page Include="Views\settingsWindow.xaml" />
+        <Page Include="Views\welcomeView.xaml" />
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Properties\AssemblyInfo.cs">
@@ -79,7 +111,11 @@
         </EmbeddedResource>
     </ItemGroup>
     <ItemGroup>
-        <None Include="App.config"/>
+        <None Include="App.config" />
+        <None Include="packages.config" />
     </ItemGroup>
-    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
+    <ItemGroup>
+      <Content Include="health.ico" />
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

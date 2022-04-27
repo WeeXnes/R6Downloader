@@ -5,8 +5,122 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:R6Downloader"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+        Title="R6Downloader" Height="450" Width="800"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        ResizeMode="NoResize"
+        Closing="MainWindow_OnClosing"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="Image">
+            <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality" />
+        </Style>
+    </Window.Resources>
+     <Border MouseDown="UIElement_OnMouseDown" CornerRadius="10">
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0 0" EndPoint="1 1">
+                <LinearGradientBrush.GradientStops>
+                    <GradientStop Offset="0" Color="#272537" />
+                    <GradientStop Offset="1" Color="#1c1b29" />
+                </LinearGradientBrush.GradientStops>
+            </LinearGradientBrush>
+        </Border.Background>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="710"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="R6Downloader"
+                           Foreground="White"
+                           FontSize="20"
+                           Padding="10,2,0,0"></TextBlock>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" Width="90">
+                    <Button Width="30" Name="btn_settings"
+                            Click="Btn_settings_OnClick"
+                            Foreground="White"
+                            Background="Transparent"
+                            Content="⚙"
+                            BorderThickness="0"
+                            Style="{StaticResource ModernMinimizeButton}"/>
+                    <Button Width="30" Name="btn_minimize"
+                            Click="Btn_minimize_OnClick"
+                            Foreground="White"
+                            Background="Transparent"
+                            Content="—"
+                            BorderThickness="0"
+                            Style="{StaticResource ModernMinimizeButton}"/>
+                    <Button Width="30" Name="btn_close"
+                            Click="Btn_close_OnClick"
+                            Foreground="White"
+                            Background="Transparent"
+                            Content="✕"
+                            BorderThickness="0"
+                            Style="{StaticResource ModernCloseButton}"/>
+                    
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <ScrollViewer Grid.Column="0" Background="Transparent" VerticalScrollBarVisibility="Hidden" Foreground="White"
+                              Padding="5,10,0,0">
+                    <StackPanel>
+                        <StackPanel>
+                            <ItemsControl x:Name="ListViewVersions" ItemsSource="{Binding version}" Loaded="ListViewVersions_OnLoaded">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Button Click="ButtonBase_OnClick" CommandParameter="{Binding}"
+                                                Background="Transparent"
+                                                BorderThickness="0"
+                                                Style="{StaticResource TransparentHover}">
+                                            <Border Width="200" Height="50">
+                                                <StackPanel>
+                                                    <Border Width="190" Height="50" CornerRadius="10">
+                                                        <TextBlock Margin="5 0" Text="{Binding Name}" FontSize="19"
+                                                                   Foreground="White"
+                                                                   HorizontalAlignment="Center"
+                                                                   VerticalAlignment="Center">
+                                                            
+                                                            <TextBlock.Effect>
+                                                                <DropShadowEffect ShadowDepth="1"/>
+                                                            
+                                                            </TextBlock.Effect>
+                                                        </TextBlock>
+                                                        <Border.Background>
+                                                            <ImageBrush ImageSource="{Binding Image,
+                                                            IsAsync=True}"/>
+                                                            
+                                                        </Border.Background>
+                                                    </Border>
+                                                    
+                                                </StackPanel>
+                                            </Border>
+                                        </Button>
+                                        
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                            </ItemsControl>
+                        </StackPanel>
+                    </StackPanel>
+                </ScrollViewer>
+                
+                <Border Grid.Column="1"
+                        Name="border_content"
+                        Padding="10,10,10,10"></Border>
+            </Grid>
+        </Grid>
+    </Border>
 </Window>
