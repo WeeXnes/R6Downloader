@@ -50,6 +50,7 @@ namespace R6Downloader
                 {
                     this.downloadProgressBar1.Value = Convert.ToInt32(this.selectedVersion.CMD.progress);
                 }));
+                this.selectedVersion.rpcDownload(Convert.ToInt32(this.selectedVersion.CMD.progress));
             };
             this.selectedVersion.CMD.Output += (sender, args) =>
             {

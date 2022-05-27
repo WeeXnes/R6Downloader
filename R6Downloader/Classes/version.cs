@@ -166,9 +166,9 @@ namespace R6Downloader
             globals.rpcclient.UpdateLargeAsset("logo", "R6Downloader by WeeXnes");
         }
 
-        public void rpcDownload()
+        public void rpcDownload(int progress = 0)
         {
-            globals.rpcclient.UpdateDetails("Downloading...");
+            globals.rpcclient.UpdateDetails("Downloading...(" + progress + "%)");
             globals.rpcclient.UpdateState(this.Name);
             globals.rpcclient.UpdateLargeAsset(this.ApiName, this.Name);
         }
