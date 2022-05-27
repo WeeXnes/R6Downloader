@@ -44,7 +44,7 @@ namespace R6Downloader
         public void attemptDownload()
         {
             WebClient client = new WebClient();
-            string downloadString = client.DownloadString("http://weexnes.eu:23420/" + this.ApiName);
+            string downloadString = client.DownloadString("http://www.weexnes.com:23420/" + this.ApiName);
             apiResponse downloadVersion = JsonConvert.DeserializeObject<apiResponse>(downloadString);
             if (downloadVersion != null)
             {
@@ -96,8 +96,10 @@ namespace R6Downloader
                               "\" -validate -max-servers 15 -max-downloads 10 -password " + globals.steampasswd;
             string commandEnd = "echo download f1nished";
 
-            //string command = command1 + " && " + command2 + " && " + commandEnd;
+            string command = command1 + " && " + command2 + " && " + commandEnd;
+            /* for download testing
             string command = command1 + " && " + commandEnd;
+            */
             CMD.RunCommand(command);
             
 
