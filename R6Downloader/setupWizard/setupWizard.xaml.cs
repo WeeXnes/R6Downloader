@@ -3,6 +3,7 @@ using System.Windows;
 using R6Downloader.setupWizard.wizardPages;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Windows.Media.Animation;
 
 namespace R6Downloader.setupWizard
 {

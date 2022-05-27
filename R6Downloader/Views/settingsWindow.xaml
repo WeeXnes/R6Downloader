@@ -44,6 +44,26 @@
                         />
                     </StackPanel>
                 </Border>
+                
+                <Border CornerRadius="10"
+                        Margin="10">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0 0" EndPoint="1 1">
+                            <LinearGradientBrush.GradientStops>
+                                <GradientStop Offset="0" Color="#1d1b29" />
+                                <GradientStop Offset="1" Color="#171621" />
+                            </LinearGradientBrush.GradientStops>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Foreground="White" HorizontalAlignment="Center" Text="Disable Image loading (Restart Required)" Padding="0,10,0,5"/>
+                        <CheckBox HorizontalAlignment="Center" Content="Disable Image Loading" Foreground="White" Padding="5,0,0,10"
+                                  Name="disableImagescheckbox"
+                                  Checked="DisableImagescheckbox_OnChecked"
+                                  Unchecked="DisableImagescheckbox_OnUnchecked"></CheckBox>
+                    </StackPanel>
+                </Border>
+                
                 <Border CornerRadius="10"
                         Margin="10">
                     <Border.Background>

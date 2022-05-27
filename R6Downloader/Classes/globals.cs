@@ -12,6 +12,7 @@ namespace R6Downloader
         public static string steampasswd;
         public static string installPath;
         public static bool currentlyPlaying = false;
+        public static bool disableImages = false;
 
     }
 

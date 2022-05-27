@@ -13,6 +13,10 @@ namespace R6Downloader
             label_path.Text = globals.installPath;
             label_steamname.Text = globals.steamUsername;
             label_steampasswd.Text = globals.steampasswd;
+            if (globals.disableImages)
+            {
+                disableImagescheckbox.IsChecked = true;
+            }
         }
 
         private void Btn_selectPath_OnClick(object sender, RoutedEventArgs e)
@@ -64,6 +68,20 @@ namespace R6Downloader
             }
             
             label_steampasswd.Text = globals.steampasswd;
+        }
+
+        private void DisableImagescheckbox_OnChecked(object sender, RoutedEventArgs e)
+        {
+            globals.disableImages = true;
+            INIFile settings = new INIFile(globals.appdataPath + "\\settings.ini", true);
+            settings.SetValue("Settings", "disableImages", globals.disableImages.ToString());
+        }
+
+        private void DisableImagescheckbox_OnUnchecked(object sender, RoutedEventArgs e)
+        {
+            globals.disableImages = false;
+            INIFile settings = new INIFile(globals.appdataPath + "\\settings.ini", true);
+            settings.SetValue("Settings", "disableImages", globals.disableImages.ToString());
         }
     }
 }

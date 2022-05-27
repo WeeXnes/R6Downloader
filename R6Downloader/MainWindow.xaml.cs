@@ -25,9 +25,9 @@ namespace R6Downloader
         public List<version> versions = new List<version>();
         public MainWindow()
         {
+            LoadSettings();
             LoadVersions();
             InitializeComponent();
-            LoadSettings();
             border_content.Child = new welcomeView();
             globals.rpcclient.Initialize();
             globals.rpcclient.SetPresence(new RichPresence()
@@ -75,10 +75,13 @@ namespace R6Downloader
                 settings.SetValue("Settings", "installPath", globals.appdataPath + "\\downloads");
                 installPath = settings.GetValue("Settings", "installPath");
             }
+            bool disableImg = Convert.ToBoolean(settings.GetValue("Settings", "disableImages"));
+            
 
             globals.installPath = installPath;
             globals.steamUsername = steamUsername;
             globals.steampasswd = steamPasswd;
+            globals.disableImages = disableImg;
         }
 
         public void LoadVersions()
@@ -314,6 +317,13 @@ namespace R6Downloader
                     "~80"
                 ),
             });
+            if (globals.disableImages)
+            {
+                foreach (var v in versions)
+                {
+                    v.Image = "";
+                }
+            }
         }
 
         private void UIElement_OnMouseDown(object sender, MouseButtonEventArgs e)

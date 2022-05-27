@@ -84,6 +84,15 @@
                                             <Border Width="200" Height="50">
                                                 <StackPanel>
                                                     <Border Width="190" Height="50" CornerRadius="10">
+                                                        <Border.Background>
+                                                            <LinearGradientBrush StartPoint="0 0" EndPoint="1 1">
+                                                                <LinearGradientBrush.GradientStops>
+                                                                    <GradientStop Offset="0" Color="#1d1b29" />
+                                                                    <GradientStop Offset="1" Color="#171621" />
+                                                                </LinearGradientBrush.GradientStops>
+                                                            </LinearGradientBrush>
+                                                        </Border.Background>
+                                                        <Border Width="190" Height="50" CornerRadius="10">
                                                         <TextBlock Margin="5 0" Text="{Binding Name}" FontSize="19"
                                                                    Foreground="White"
                                                                    HorizontalAlignment="Center"
@@ -100,7 +109,7 @@
                                                             
                                                         </Border.Background>
                                                     </Border>
-                                                    
+                                                    </Border>
                                                 </StackPanel>
                                             </Border>
                                         </Button>
