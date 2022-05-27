@@ -43,11 +43,38 @@ namespace R6Downloader
             {
                 this.selectedVersion.rpcViewPage();
             }
+
+            this.selectedVersion.CMD.ProgressChanged += (sender, args) =>
+            {
+                this.Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    this.downloadProgressBar1.Value = Convert.ToInt32(this.selectedVersion.CMD.progress);
+                }));
+            };
+            this.selectedVersion.CMD.Output += (sender, args) =>
+            {
+                this.Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    if (!String.IsNullOrEmpty(this.selectedVersion.CMD.outputStream))
+                    {
+                        if (this.selectedVersion.CMD.outputStream == "download f1nished")
+                        {
+                            this.downloadProgressBar1.Visibility = Visibility.Hidden;
+                            globals.currentlyPlaying = false;
+                            this.selectedVersion.rpcViewPage();
+                        }
+                        this.outputLog.AppendText(this.selectedVersion.CMD.outputStream + "\n");
+                        this.outputLog.ScrollToEnd();
+                    }
+                }));
+            };
         }
 
         private void Btn_install_OnClick(object sender, RoutedEventArgs e)
         {
+            globals.currentlyPlaying = true;
             this.selectedVersion.attemptDownload();
+            downloadProgressBar1.Visibility = Visibility.Visible;
         }
 
         private void Btn_uninstall_OnClick(object sender, RoutedEventArgs e)

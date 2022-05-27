@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Security;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.IO;
+using CMDHandler;
 using DiscordRPC;
 using Newtonsoft.Json.Linq;
 using Nocksoft.IO.ConfigFiles;
@@ -42,6 +44,7 @@ namespace R6Downloader
 
         }
 
+
         public void LoadSettings()
         {
             globals.appdataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "r6downloader");
@@ -59,6 +62,12 @@ namespace R6Downloader
                 settings.SetValue("Settings", "steamUsername", "empty");
                 steamUsername = settings.GetValue("Settings", "steamUsername");
             }
+            string steamPasswd = settings.GetValue("Settings", "steamPasswd");
+            if (String.IsNullOrEmpty(steamPasswd))
+            {
+                settings.SetValue("Settings", "steamPasswd", "empty");
+                steamUsername = settings.GetValue("Settings", "steamPasswd");
+            }
             
             string installPath = settings.GetValue("Settings", "installPath");
             if (String.IsNullOrEmpty(installPath))
@@ -69,6 +78,7 @@ namespace R6Downloader
 
             globals.installPath = installPath;
             globals.steamUsername = steamUsername;
+            globals.steampasswd = steamPasswd;
         }
 
         public void LoadVersions()
@@ -355,8 +365,11 @@ namespace R6Downloader
 
         private void MainWindow_OnClosing(object sender, CancelEventArgs e)
         {
-            //nothing here
-            
+            Process[] processes = Process.GetProcessesByName("dotnet");
+            foreach (var p in processes)
+            {
+                p.Kill();
+            }
         }
     }
 }

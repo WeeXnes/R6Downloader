@@ -2,14 +2,20 @@
 using System.Diagnostics;
 using System.IO;
 using System.Net;
+using System.Threading.Tasks;
 using System.Windows;
 using Newtonsoft.Json;
-using cmdInterface;
+using CMDHandler;
+using R6Downloader.Views;
 
 namespace R6Downloader
 {
     public class version
     {
+        public CommandHandler CMD = new CommandHandler();
+        
+        public event EventHandler ProgresssChanged;
+        public event EventHandler OutputRecieved;
         public string Name { get; set; }
         public string Image { get; set; }
         public string ApiName { get; set; }
@@ -31,6 +37,8 @@ namespace R6Downloader
             this.Size = size;
             this.VersionStr = versionStr;
             this.binaryFileName = _binaryFileName;
+            CMD.ProgressChanged += CMDOnProgressChanged;
+            CMD.Output += CMDOnOutput;
         }
         
         public void attemptDownload()
@@ -77,15 +85,59 @@ namespace R6Downloader
 
         public void startDownload(apiResponse res)
         {
+            rpcDownload();
             string path = globals.installPath + "\\" + this.generateFilePath();
-            CMD.execute(new []
-            {
-                "title Downloading " + this.Name,
-                "dotnet DepotDownloader.dll -app 359550 -depot 377237 -manifest " + res.binary + " -username " + globals.steamUsername + " -remember-password -dir \"" + path + "\" -validate -max-servers 15 -max-downloads 10",
-                "dotnet DepotDownloader.dll -app 359550 -depot 359551 -manifest " + res.content + " -username " + globals.steamUsername + " -remember-password -dir \"" + path + "\" -validate -max-servers 15 -max-downloads 10"
-            });
+            
+            string command1 = "dotnet DepotDownloader.dll -app 359550 -depot 377237 -manifest " + res.binary +
+                              " -username " + globals.steamUsername + " -remember-password -dir \"" + path +
+                              "\" -validate -max-servers 15 -max-downloads 10 -password " + globals.steampasswd;
+            string command2 = "dotnet DepotDownloader.dll -app 359550 -depot 359551 -manifest " + res.content +
+                              " -username " + globals.steamUsername + " -remember-password -dir \"" + path +
+                              "\" -validate -max-servers 15 -max-downloads 10 -password " + globals.steampasswd;
+            string commandEnd = "echo download f1nished";
+
+            //string command = command1 + " && " + command2 + " && " + commandEnd;
+            string command = command1 + " && " + commandEnd;
+            CMD.RunCommand(command);
+            
+
         }
 
+
+        private void CMDOnOutput(object sender, EventArgs e)
+        {
+            EventHandler handler = OutputRecieved;
+            if(null != handler) handler(this, EventArgs.Empty);
+        }
+
+        private void CMDOnProgressChanged(object sender, EventArgs e)
+        {
+            EventHandler handler = ProgresssChanged;
+            if(null != handler) handler(this, EventArgs.Empty);
+        }
+
+
+        /*
+        private string F()
+        {
+            string uin = Ask();
+            CMD.ProcessInput.WriteLine(uin);
+            MessageBox.Show(uin);
+            return "monke";
+        }
+        public static string Ask()
+        {
+            var form = new userInput();
+            form.ShowDialog();
+            return form.userinput.Text;
+        }
+
+        private Task<string> RunOnUiAsync(Func<string> f)
+        {
+            var dispatcherOperation = Application.Current.Dispatcher.InvokeAsync(f);
+            return dispatcherOperation.Task;
+        }
+*/
         public void uninstall()
         {
             string path = globals.installPath + "\\" + this.generateFilePath();
@@ -110,6 +162,13 @@ namespace R6Downloader
             globals.rpcclient.UpdateDetails("Browsing...");
             globals.rpcclient.UpdateState(this.Name);
             globals.rpcclient.UpdateLargeAsset("logo", "R6Downloader by WeeXnes");
+        }
+
+        public void rpcDownload()
+        {
+            globals.rpcclient.UpdateDetails("Downloading...");
+            globals.rpcclient.UpdateState(this.Name);
+            globals.rpcclient.UpdateLargeAsset(this.ApiName, this.Name);
         }
 
         public void rpcPlaying()

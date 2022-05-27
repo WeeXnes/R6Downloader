@@ -22,7 +22,8 @@
                 <RowDefinition Height="35"/>
                 <RowDefinition Height="35"/>
                 <RowDefinition Height="35"/>
-                <RowDefinition Height="150"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="130"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <TextBlock Text="Name"
@@ -91,8 +92,26 @@
                            Foreground="White"
                            Padding="10,0,0,0"/>
             </Grid>
-            
-            <Grid Grid.Row="6">
+            <ProgressBar Grid.Row="5" Height="20" Margin="10,0,10,0" Name="downloadProgressBar1"
+                         Maximum="100"
+                         Minimum="0" Visibility="Hidden"/>
+            <Border Grid.Row="6"
+                    Background="#22202f"
+                    CornerRadius="10" Margin="8">
+            <RichTextBox Grid.Row="6" Margin="10" Name="outputLog"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         Foreground="White"
+                         IsReadOnly="True"
+                         IsHitTestVisible="False">
+                <RichTextBox.Resources>
+                    <Style TargetType="{x:Type Paragraph}">
+                        <Setter Property="Margin" Value="0"/>
+                    </Style>
+                </RichTextBox.Resources>
+            </RichTextBox>
+            </Border>
+            <Grid Grid.Row="7">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>

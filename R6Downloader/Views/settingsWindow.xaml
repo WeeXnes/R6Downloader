@@ -82,6 +82,34 @@
                             </LinearGradientBrush.GradientStops>
                         </LinearGradientBrush>
                     </Border.Background>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Foreground="White" HorizontalAlignment="Center" Text="Steam Password:" Padding="0,10,0,0"/>
+                        <TextBlock Name="label_steampasswd" Foreground="White" HorizontalAlignment="Center" Text="monke"/>
+                        <TextBox Margin="0,5,0,0" Background="Transparent"
+                                 Width="230"
+                                 Foreground="White"
+                                 Name="input_steampasswd"/>
+                        <Button Content="Apply" Background="#38364d"
+                                BorderThickness="0"
+                                Margin="10,10,10,10"
+                                Foreground="White"
+                                Name="btn_passwdapply"
+                                Click="Btn_passwdapply_OnClick"
+                                Height="20"
+                                Style="{StaticResource UniversalMaterialButton}"
+                        />
+                    </StackPanel>
+                </Border>
+                <Border CornerRadius="10"
+                        Margin="10">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0 0" EndPoint="1 1">
+                            <LinearGradientBrush.GradientStops>
+                                <GradientStop Offset="0" Color="#1d1b29" />
+                                <GradientStop Offset="1" Color="#171621" />
+                            </LinearGradientBrush.GradientStops>
+                        </LinearGradientBrush>
+                    </Border.Background>
                     <Button Content="Open Setup Wizard" Background="#38364d"
                             BorderThickness="0"
                             Margin="10,10,10,10"

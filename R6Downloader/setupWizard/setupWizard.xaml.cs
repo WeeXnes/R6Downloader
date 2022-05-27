@@ -50,6 +50,8 @@ namespace R6Downloader.setupWizard
                 new page2(),
                 new page3(),
                 new page4(),
+                new page5(),
+                new page6(),
                 new final()
             };
         }

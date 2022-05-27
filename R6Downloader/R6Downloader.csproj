@@ -60,7 +60,7 @@
             <SubType>Designer</SubType>
         </ApplicationDefinition>
         <Compile Include="Classes\apiResponse.cs" />
-        <Compile Include="Classes\cmdInterface.cs" />
+        <Compile Include="Classes\CommandHandler.cs" />
         <Compile Include="Classes\globals.cs" />
         <Compile Include="Classes\INIFile.cs" />
         <Compile Include="Classes\version.cs" />
@@ -70,8 +70,17 @@
         <Compile Include="setupWizard\wizardPages\page2.xaml.cs" />
         <Compile Include="setupWizard\wizardPages\page3.xaml.cs" />
         <Compile Include="setupWizard\wizardPages\page4.xaml.cs" />
+        <Compile Include="setupWizard\wizardPages\page5.xaml.cs">
+          <DependentUpon>page5.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="setupWizard\wizardPages\page6.xaml.cs">
+          <DependentUpon>page6.xaml</DependentUpon>
+        </Compile>
         <Compile Include="Views\contentView.xaml.cs" />
         <Compile Include="Views\settingsWindow.xaml.cs" />
+        <Compile Include="Views\userInput.xaml.cs">
+          <DependentUpon>userInput.xaml</DependentUpon>
+        </Compile>
         <Compile Include="Views\welcomeView.xaml.cs" />
         <Page Include="MainWindow.xaml">
             <Generator>MSBuild:Compile</Generator>
@@ -91,9 +100,12 @@
         <Page Include="setupWizard\wizardPages\page2.xaml" />
         <Page Include="setupWizard\wizardPages\page3.xaml" />
         <Page Include="setupWizard\wizardPages\page4.xaml" />
+        <Page Include="setupWizard\wizardPages\page5.xaml" />
+        <Page Include="setupWizard\wizardPages\page6.xaml" />
         <Page Include="Theme\materialButtonTheme.xaml" />
         <Page Include="Views\contentView.xaml" />
         <Page Include="Views\settingsWindow.xaml" />
+        <Page Include="Views\userInput.xaml" />
         <Page Include="Views\welcomeView.xaml" />
     </ItemGroup>
     <ItemGroup>

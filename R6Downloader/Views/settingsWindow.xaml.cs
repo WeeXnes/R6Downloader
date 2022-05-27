@@ -12,6 +12,7 @@ namespace R6Downloader
             InitializeComponent();
             label_path.Text = globals.installPath;
             label_steamname.Text = globals.steamUsername;
+            label_steampasswd.Text = globals.steampasswd;
         }
 
         private void Btn_selectPath_OnClick(object sender, RoutedEventArgs e)
@@ -50,6 +51,19 @@ namespace R6Downloader
             
             wizard setupWizard = new wizard();
             setupWizard.Show();
+        }
+
+        private void Btn_passwdapply_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (!String.IsNullOrEmpty(input_steampasswd.Text))
+            {
+                //MessageBox.Show("valid input");
+                globals.steampasswd = input_steampasswd.Text;
+                INIFile settings = new INIFile(globals.appdataPath + "\\settings.ini", true);
+                settings.SetValue("Settings", "steamPasswd", globals.steampasswd);
+            }
+            
+            label_steampasswd.Text = globals.steampasswd;
         }
     }
 }
